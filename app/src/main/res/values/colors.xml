@@ -15,7 +15,7 @@
     <color name="home_header">@color/header</color>
     <color name="home_icon">@color/header</color>
     //Recycler Items
-    <color name="transparent_background">@color/media_player_controls_background</color>
+    <color name="transparent_background">#80000000</color>
     <color name="recycler_anime_title">@color/header</color>
     <color name="recycler_anime_type">@color/text_default</color>
     <color name="recycler_releases_date">@color/recycler_anime_type</color>
@@ -52,7 +52,8 @@
 
     //Media Player Controls
     <color name="media_player_controls">#ffffff</color>
-    <color name="media_player_controls_background">#60000000</color>
+    <color name="buffer_loading">#CCFFFFFF</color>
+    <color name="media_player_controls_background">#B3000000</color>
 
 
     //Shimmer Background

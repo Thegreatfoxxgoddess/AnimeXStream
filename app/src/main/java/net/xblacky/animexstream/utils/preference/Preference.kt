@@ -2,19 +2,23 @@ package net.xblacky.animexstream.utils.preference
 
 import android.content.Context
 import android.content.SharedPreferences
+import dagger.Module
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ActivityComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import net.xblacky.animexstream.utils.constants.C
+import javax.inject.Inject
 
-class Preference(private val context: Context) {
+@Module
+@InstallIn(ActivityComponent::class)
+class Preference @Inject constructor(@ApplicationContext val context: Context) {
     private val PREF_NAME = "AnimeXStream"
     private val BASE_URL = "BASE_URL"
     private val ORIGIN = "ORIGIN"
     private val REFERER = "REFERER"
     private val PRIVATE_MODE = 0
-    private lateinit var sharedPreferences: SharedPreferences
-
-    init {
-        sharedPreferences = context.getSharedPreferences(PREF_NAME, PRIVATE_MODE)
-    }
+    private var sharedPreferences: SharedPreferences =
+        context.getSharedPreferences(PREF_NAME, PRIVATE_MODE)
 
     fun getBaseUrl(): String {
         return sharedPreferences.getString(BASE_URL, C.BASE_URL) ?: C.BASE_URL

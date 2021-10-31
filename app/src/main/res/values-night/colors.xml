@@ -53,8 +53,6 @@
 
     //Media Player Controls
     <color name="media_player_controls">#ffffff</color>
-    <color name="media_player_controls_background">#60000000</color>
-
 
     //Shimmer Background
     <color name="shimmer_background">#dddddd</color>

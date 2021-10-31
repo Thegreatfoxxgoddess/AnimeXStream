@@ -1,4 +1,21 @@
+<<<<<<< HEAD
 <vector android:height="30dp" android:viewportHeight="24"
     android:viewportWidth="24" android:width="30dp" xmlns:android="http://schemas.android.com/apk/res/android">
     <path android:fillColor="#ffffff" android:pathData="m23.772,10.462 l-8.5,-8.25c-0.216,-0.21 -0.539,-0.269 -0.814,-0.153 -0.277,0.118 -0.458,0.39 -0.458,0.691v4.252c-7.743,0.134 -14,6.474 -14,14.248 0,0.342 0.241,0.622 0.572,0.708 0.059,0.015 0.118,0.022 0.177,0.022 0.274,0 0.541,-0.157 0.678,-0.404 2.245,-4.056 6.519,-6.576 11.155,-6.576h1.418v4.25c0,0.301 0.181,0.573 0.458,0.691 0.274,0.116 0.599,0.057 0.814,-0.153l8.5,-8.25c0.146,-0.141 0.228,-0.335 0.228,-0.538s-0.082,-0.397 -0.228,-0.538z"/>
+=======
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="40dp"
+    android:height="40dp"
+    android:viewportWidth="47.5"
+    android:viewportHeight="47.5">
+    <path
+        android:fillColor="@color/media_player_controls"
+        android:pathData="M37.7,40.9c-7.7,7.7 -20.4,7.7 -28.1,0c-7.8,-7.8 -7.7,-20.4 0,-28.1c5.9,-5.9 14.6,-7.2 22.3,-3.5l-1.2,2.6c-6.7,-3.2 -14.1,-2.1 -19.1,2.9c-6.7,6.6 -6.7,17.4 0,24s17.4,6.7 24,0c4.7,-4.7 6.2,-11.7 4,-18l2.7,-1C45.1,27.2 43.3,35.4 37.7,40.9" />
+    <path
+        android:fillColor="@color/media_player_controls"
+        android:pathData="M25.9,18.1l-2.2,-2.2l6.6,-6.5l-6.5,-6.6l2.2,-2.1l8.7,8.7z" />
+    <path
+        android:fillColor="@color/media_player_controls"
+        android:pathData="M33.7,18.1l-2.2,-2.2l6.6,-6.5l-6.5,-6.6l2.2,-2.1l8.7,8.7z" />
+>>>>>>> fb7552126aa9242ce5565fc81890be4fafae82e0
 </vector>

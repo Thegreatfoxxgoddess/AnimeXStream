@@ -21,4 +21,17 @@
     <string name="removed_from_favourites">Anime removed from Favourites</string>
     <string name="see_more"><![CDATA[See more >]]></string>
     <string name="video_quality">Video Quality</string>
+    <string name="previous_episode_icon">Previous Episode Icon</string>
+    <string name="prev_ep">Prev. Ep.</string>
+    <string name="next_ep">Next Ep.</string>
+    <string name="qualityAuto">Quality(Auto)</string>
+    <string name="_10">10</string>
+    <string name="_plus10">+10</string>
+    <string name="_minus10">-10</string>
+
+    <string name="shared_anime_title">shared_anime_title</string>
+    <string name="shared_anime_image">shared_anime_image</string>
+    <string name="favourite_transition">favourite_transition</string>
+    <string name="episode_transition">episode_transition</string>
+    <string name="search_transition">search_transition</string>
 </resources>

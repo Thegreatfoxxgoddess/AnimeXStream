@@ -14,12 +14,14 @@ import net.xblacky.animexstream.R
 import timber.log.Timber
 
 @EpoxyModelClass(layout = R.layout.recycler_episode_item)
-abstract class EpisodeModel : EpoxyModelWithHolder<EpisodeModel.HomeHeaderHolder>(){
+abstract class EpisodeModel : EpoxyModelWithHolder<EpisodeModel.HomeHeaderHolder>() {
 
     @EpoxyAttribute
     lateinit var episodeModel: net.xblacky.animexstream.utils.model.EpisodeModel
+
     @EpoxyAttribute
     lateinit var clickListener: View.OnClickListener
+
     @EpoxyAttribute
     var watchedProgress: Long = 0
 
@@ -28,12 +30,20 @@ abstract class EpisodeModel : EpoxyModelWithHolder<EpisodeModel.HomeHeaderHolder
         super.bind(holder)
         holder.episodeText.text = episodeModel.episodeNumber
         holder.cardView.setOnClickListener(clickListener)
-        holder.progressBar.progress = if(watchedProgress >90) 100  else if(watchedProgress in 1..10) 10 else watchedProgress.toInt()
-        holder.cardView.setCardBackgroundColor(ResourcesCompat.getColor(holder.cardView.resources, R.color.episode_background, null))
+        holder.progressBar.progress =
+            if (watchedProgress > 90) 100 else if (watchedProgress in 1..10) 10 else watchedProgress.toInt()
+        holder.cardView.setCardBackgroundColor(
+            ResourcesCompat.getColor(
+                holder.cardView.resources,
+                R.color.episode_background,
+                null
+            )
+        )
+
 
     }
 
-    class HomeHeaderHolder : EpoxyHolder(){
+    class HomeHeaderHolder : EpoxyHolder() {
         lateinit var episodeText: TextView
         lateinit var cardView: CardView
         lateinit var progressBar: ProgressBar
