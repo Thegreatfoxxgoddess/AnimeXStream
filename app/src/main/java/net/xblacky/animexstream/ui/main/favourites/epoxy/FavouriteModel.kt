@@ -32,6 +32,18 @@ abstract class FavouriteModel : EpoxyModelWithHolder<FavouriteModel.MovieHolder>
         }
         holder.root.setOnClickListener(clickListener)
 
+        //Set Shared Element for Anime Title
+        var animeTitleTransition = holder.root.context.getString(R.string.shared_anime_title)
+        animeTitleTransition =
+            "${animeTitleTransition}_${favouriteModel.ID}"
+        holder.animeTitle.transitionName = animeTitleTransition
+
+        //Set Shared Element for Anime Image
+        var animeImageTransition = holder.root.context.getString(R.string.shared_anime_image)
+        animeImageTransition =
+            "${animeImageTransition}_${favouriteModel.imageUrl}"
+        holder.animeImageView.transitionName = animeImageTransition
+
     }
     class MovieHolder : EpoxyHolder(){
 

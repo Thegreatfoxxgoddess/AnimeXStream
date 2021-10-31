@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    app:cardCornerRadius="20dp"
+    app:cardCornerRadius="16dp"
     app:cardBackgroundColor="@color/episode_background"
     android:clickable="true"
     android:id="@+id/cardView"

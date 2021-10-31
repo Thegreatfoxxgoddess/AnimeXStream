@@ -3,7 +3,7 @@
 <h4 align="center">An Android app to watch anime on your phone without ads.</h4>
 <p align="center"><a href="https://github.com/mukul500/AnimeXStream/releases"><img src="/meta/android/download.png"></a></p> 
 <p align="center">
-<a href="https://github.com/mukul500/AnimeXStream" alt="GitHub release"><img src="https://img.shields.io/badge/version-0.2.4-blue.svg" ></a>
+<a href="https://github.com/mukul500/AnimeXStream" alt="GitHub release"><img src="https://img.shields.io/badge/version-0.3.2-blue.svg" ></a>
 <a href="/LICENSE" alt="License: GPLv3"><img src="https://img.shields.io/badge/License-MIT-orange.svg"></a>
 <a href="https://github.com/mukul500/AnimeXStream" alt="Build Status"><img src="https://img.shields.io/badge/build-passing-yellowgreen.svg"></a>
 </p>
@@ -43,7 +43,7 @@ Anime X Stream parses website data and filter required info, thus It removes the
 * Watch Progress
 * Add To Favourites
 * Auto Quality for Video Playback
-* Ads Free Video Placback
+* Ads Free Video Playback
 * Directly skip to next/previous episode from player.
 * Dark Mode Support with system
 
@@ -58,9 +58,10 @@ Anime X Stream parses website data and filter required info, thus It removes the
 * MVVM
 * Retrofit & RxJava
 * Epoxy
-* ExoPlayer
+* ExoPlayer v2
 * Android Architecture Components
 * Glide
+* Kotlin Coroutines
 
 ## Contribution
 Your ideas, translations, design changes, code cleaning, or real heavy code changes or any help is always welcome. The more is contribution the better it gets

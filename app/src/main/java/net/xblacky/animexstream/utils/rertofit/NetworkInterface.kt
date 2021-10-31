@@ -11,41 +11,32 @@ import retrofit2.http.Url
 class NetworkInterface {
 
 
-    interface FetchRecentSubOrDub {
+    interface HomeDataService{
 
         @GET("https://ajax.gogocdn.net/ajax/page-recent-release.html")
-        fun get(
+        suspend fun fetchRecentSubOrDub(
             @HeaderMap header: Map<String, String>,
             @Query("page") page: Int,
             @Query("type") type: Int
-        ): Observable<ResponseBody>
-    }
-
-    interface FetchPopularFromAjax {
+        ): ResponseBody
 
         @GET("https://ajax.gogocdn.net/ajax/page-recent-release-ongoing.html")
-        fun get(
+        suspend fun fetchPopularFromAjax(
             @HeaderMap header: Map<String, String>,
             @Query("page") page: Int
-        ): Observable<ResponseBody>
-    }
-
-    interface FetchMovies {
+        ): ResponseBody
 
         @GET("/anime-movies.html")
-        fun get(
+        suspend fun fetchMovies(
             @HeaderMap header: Map<String, String>,
             @Query("page") page: Int
-        ): Observable<ResponseBody>
-    }
-
-    interface FetchNewestSeason {
+        ): ResponseBody
 
         @GET("/new-season.html")
-        fun get(
+        suspend fun fetchNewestSeason(
             @HeaderMap header: Map<String, String>,
             @Query("page") page: Int
-        ): Observable<ResponseBody>
+        ): ResponseBody
     }
 
     interface FetchEpisodeMediaUrl {
