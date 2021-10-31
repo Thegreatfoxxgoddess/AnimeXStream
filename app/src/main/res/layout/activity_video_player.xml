@@ -1,9 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<fragment
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:name="net.xblacky.animexstream.ui.main.player.VideoPlayerFragment"
-    android:id="@+id/playerFragment">
 
-</fragment>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:transitionName="@string/episode_transition"
+    android:id="@+id/playerActivityContainer"
+    android:background="@android:color/black"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <fragment
+        android:id="@+id/playerFragment"
+        android:name="net.xblacky.animexstream.ui.main.player.VideoPlayerFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+    </fragment>
+</androidx.constraintlayout.widget.ConstraintLayout>

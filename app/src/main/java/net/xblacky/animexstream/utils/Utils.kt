@@ -7,25 +7,42 @@ import net.xblacky.animexstream.utils.preference.PreferenceHelper
 
 
 class Utils {
-    companion object{
+    companion object {
 
-        fun getTypeName(typeValue: Int) : String{
+        fun getRemainingTime(watchedDuration: Long, totalDuration: Long): String {
+            return if (totalDuration > watchedDuration) {
+                val remainingDuration = totalDuration - watchedDuration
+                val s: Long = remainingDuration / 1000 % 60
+                val m: Long = remainingDuration / 1000 / 60
+                String.format("%02d:%02d", m, s)
+            } else {
+                "00:00"
+            }
 
-           return when(typeValue){
+
+        }
+
+        fun getTypeName(typeValue: Int): String {
+
+            return when (typeValue) {
 
                 C.TYPE_RECENT_DUB -> "Recent Dub"
                 C.TYPE_RECENT_SUB -> "Recent Sub"
                 C.TYPE_MOVIE -> "Movies"
                 C.TYPE_POPULAR_ANIME -> "Popular Anime"
                 C.TYPE_GENRE -> "Categories"
-                C.TYPE_NEW_SEASON-> "New Season"
+                C.TYPE_NEW_SEASON -> "New Season"
                 else -> "Default"
             }
         }
 
-        fun getHeader(): Map<String, String>{
+        fun getHeader(): Map<String, String> {
             val pref = PreferenceHelper.sharedPreference
-            return mapOf("referer" to pref.getReferrer(), "origin" to pref.getOrigin(), "user-agent" to C.USER_AGENT)
+            return mapOf(
+                "referer" to pref.getReferrer(),
+                "origin" to pref.getOrigin(),
+                "user-agent" to C.USER_AGENT
+            )
         }
 
         fun calculateNoOfColumns(
@@ -37,8 +54,8 @@ class Utils {
             return (screenWidthDp / columnWidthDp + 0.5).toInt()
         }
 
-        fun getPositionByType(typeValue: Int): Int{
-            return when (typeValue){
+        fun getPositionByType(typeValue: Int): Int {
+            return when (typeValue) {
                 C.TYPE_RECENT_SUB -> C.RECENT_SUB_POSITION
                 C.TYPE_NEW_SEASON -> C.NEWEST_SEASON_POSITION
                 C.TYPE_RECENT_DUB -> C.RECENT_SUB_POSITION

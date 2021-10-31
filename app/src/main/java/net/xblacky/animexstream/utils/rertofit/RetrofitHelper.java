@@ -18,7 +18,7 @@ public  class RetrofitHelper {
 
         if(BuildConfig.DEBUG){
             HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+            interceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
             client = new OkHttpClient.Builder()
                     .retryOnConnectionFailure(true)
                     .addInterceptor(interceptor)
@@ -29,12 +29,11 @@ public  class RetrofitHelper {
                     .build();
         }
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .client(client)
-                .baseUrl(baseUrl)
-                .build();
-        retrofitInstance = retrofit;
+         retrofitInstance = new Retrofit.Builder()
+                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                 .client(client)
+                 .baseUrl(baseUrl)
+                 .build();
 
     }
 

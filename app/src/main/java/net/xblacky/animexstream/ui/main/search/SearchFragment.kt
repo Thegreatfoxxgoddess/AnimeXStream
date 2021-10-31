@@ -2,9 +2,12 @@ package net.xblacky.animexstream.ui.main.search
 
 import android.content.Context
 import android.content.res.Configuration
+import android.graphics.Color
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
@@ -12,13 +15,21 @@ import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.widget.TextView.OnEditorActionListener
+import androidx.core.content.ContextCompat
+import androidx.core.view.doOnPreDraw
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.FragmentNavigatorExtras
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.transition.MaterialContainerTransform
+import com.google.android.material.transition.MaterialElevationScale
+import com.google.android.material.transition.MaterialFadeThrough
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_search.view.*
 import kotlinx.android.synthetic.main.loading.view.*
 import net.xblacky.animexstream.R
@@ -40,21 +51,23 @@ class SearchFragment : Fragment(), View.OnClickListener,
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         rootView = inflater.inflate(R.layout.fragment_search, container, false)
+        return rootView
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        viewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
+
+        setupTransitions(view)
+        setObserver()
         setOnClickListeners()
         setAdapters()
         setRecyclerViewScroll()
         setEditTextListener()
-        showKeyBoard()
-        return rootView
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
-        setObserver()
-    }
 
     private fun setEditTextListener() {
         rootView.searchEditText.setOnEditorActionListener(OnEditorActionListener { v, actionId, event ->
@@ -65,6 +78,19 @@ class SearchFragment : Fragment(), View.OnClickListener,
                 return@OnEditorActionListener true
             }
             false
+        })
+        rootView.searchEditText.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                viewModel.fetchSearchList(s.toString().trim())
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+
+            }
+
         })
     }
 
@@ -77,7 +103,12 @@ class SearchFragment : Fragment(), View.OnClickListener,
         searchController = SearchController(this)
         searchController.spanCount = Utils.calculateNoOfColumns(requireContext(), 150f)
         rootView.searchRecyclerView.apply {
+<<<<<<< HEAD
             layoutManager = GridLayoutManager(context, Utils.calculateNoOfColumns(requireContext(), 150f))
+=======
+            layoutManager =
+                GridLayoutManager(context, Utils.calculateNoOfColumns(requireContext(), 150f))
+>>>>>>> fb7552126aa9242ce5565fc81890be4fafae82e0
             adapter = searchController.adapter
             (layoutManager as GridLayoutManager).spanSizeLookup = searchController.spanSizeLookup
         }
@@ -189,21 +220,49 @@ class SearchFragment : Fragment(), View.OnClickListener,
     }
 
     private fun hideKeyBoard() {
-        val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.hideSoftInputFromWindow(activity?.currentFocus?.windowToken, 0)
+        val imm =
+            requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(requireActivity().currentFocus?.windowToken, 0)
     }
 
     private fun showKeyBoard() {
-        val imm = context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        imm.showSoftInput(activity?.currentFocus, 0)
+        val imm =
+            requireContext().getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.showSoftInput(requireActivity().currentFocus, 0)
     }
 
-    override fun animeTitleClick(model: AnimeMetaModel) {
+    override fun animeTitleClick(model: AnimeMetaModel, sharedTitle: View, sharedImage: View) {
+        val extras = FragmentNavigatorExtras(
+            sharedTitle to resources.getString(R.string.shared_anime_title),
+            sharedImage to resources.getString(R.string.shared_anime_image)
+        )
         findNavController().navigate(
             SearchFragmentDirections.actionSearchFragmentToAnimeInfoFragment(
-                categoryUrl = model.categoryUrl
-            )
+                categoryUrl = model.categoryUrl,
+                animeImageUrl = model.imageUrl,
+                animeName = model.title
+            ),
+            extras
         )
+    }
+
+    private fun setupTransitions(view: View) {
+        postponeEnterTransition()
+        view.doOnPreDraw { startPostponedEnterTransition() }
+        exitTransition = MaterialFadeThrough().apply {
+            duration = 300
+        }
+        reenterTransition = MaterialFadeThrough().apply {
+            duration = 300
+        }
+        sharedElementEnterTransition = MaterialContainerTransform().apply {
+            drawingViewId = R.id.navHostFragmentContainer
+            duration = 300
+            scrimColor = Color.TRANSPARENT
+            fadeMode = MaterialContainerTransform.FADE_MODE_THROUGH
+            startContainerColor = ContextCompat.getColor(view.context, android.R.color.transparent)
+            endContainerColor = ContextCompat.getColor(view.context, android.R.color.transparent)
+        }
     }
 
     private fun isNetworkAvailable(): Boolean {

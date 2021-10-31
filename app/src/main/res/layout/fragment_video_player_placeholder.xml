@@ -12,6 +12,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
+        android:innerRadiusRatio="3"
+        android:thicknessRatio="20.0"
         android:indeterminateTint="@android:color/white"/>
 
 </RelativeLayout>
